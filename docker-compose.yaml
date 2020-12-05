@@ -32,7 +32,7 @@ services:
     build:
       context: ./HTTPSERV
       dockerfile: Dockerfile
-    volumes_from:
+    volumes:
       - obser
     ports:
       - 8080:8080
