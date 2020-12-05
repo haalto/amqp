@@ -32,8 +32,8 @@ services:
     build:
       context: ./HTTPSERV
       dockerfile: Dockerfile
-    volumes:
-      - obser:/data
+    volumes_from:
+      - obser
     ports:
       - 8080:8080
     restart: always
