@@ -9,4 +9,5 @@ before_script:
 build:
   stage: build
   script:
-    - docker-compose up
+    - apk add --no--cache docker-compose
+    - docker-compose up -d
