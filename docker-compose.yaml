@@ -24,7 +24,7 @@ services:
       context: ./OBSE
       dockerfile: Dockerfile
     volumes:
-      - ./data
+      - /data
     expose: [8003]
     restart: always
     command: npm start
@@ -32,8 +32,8 @@ services:
     build:
       context: ./HTTPSERV
       dockerfile: Dockerfile
-    volumes_from:
-      - obser
+    volumes:
+      - obser:/data
     ports:
       - 8080:8080
     restart: always
