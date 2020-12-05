@@ -4,19 +4,16 @@ services:
   rabbitmq:
     image: rabbitmq:3
     hostname: my-rabbit
-    expose: [5672]
   orig:
     build:
       context: ./ORIG
       dockerfile: Dockerfile
-    expose: [8001]
     restart: always
     command: npm start
   imed:
     build:
       context: ./IMED
       dockerfile: Dockerfile
-    expose: [8002]
     restart: always
     command: npm start
   obser:
@@ -24,8 +21,7 @@ services:
       context: ./OBSE
       dockerfile: Dockerfile
     volumes:
-      - ./data
-    expose: [8003]
+      - data:/data
     restart: always
     command: npm start
   httpserv:
@@ -33,8 +29,10 @@ services:
       context: ./HTTPSERV
       dockerfile: Dockerfile
     volumes:
-      - obser
+      - data:/data
     ports:
       - 8081:8081
     restart: always
     command: npm start
+volumes:
+  data:
