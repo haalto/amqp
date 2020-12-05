@@ -24,7 +24,7 @@ services:
       context: ./OBSE
       dockerfile: Dockerfile
     volumes:
-      - /data
+      - ./data
     expose: [8003]
     restart: always
     command: npm start
