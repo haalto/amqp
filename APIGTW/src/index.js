@@ -28,7 +28,7 @@ http
         body += data;
       });
 
-      req.on('end', () => {
+      req.on('end', async () => {
         let parsed;
 
         try {
@@ -37,8 +37,8 @@ http
           res.statusCode = 400;
           res.end('{"error":"CANNOT_PARSE"}');
         }
-        const response = await fetch(`http://apigateway:8081/state`, {
-          method: 'POST',
+        const response = await fetch(`http://stateserv:9000/state`, {
+          method: 'PUT',
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -47,9 +47,9 @@ http
         });
 
         if (response.status === 200) {
-          res.end(JSON.stringify({msg: 'State changed'}))
+          res.end(JSON.stringify({ msg: 'State changed' }));
         } else {
-          res.end('Something went wrong')
+          res.end('Something went wrong');
         }
       });
     } else {
