@@ -64,8 +64,8 @@ describe('Test API Gateway', () => {
     expect(data).not.toBe('WOLOLO');
   });
 
-  it('Requesting logs returns status code 200', () => {
+  it('Requesting logs returns status code 200', async () => {
     const response = await fetch('http://apigateway:8081/run-log');
     expect(response.status).toBe(200);
-  })
+  });
 });

@@ -14,6 +14,17 @@ http
         res.statusCode = 500;
         res.end(e.message);
       }
+    } else if (req.method === 'GET' && path === '/run-log') {
+      console.log('gatewat get logs');
+      try {
+        const response = await fetch('http://stateserv:9000/logs');
+        const data = await response.text();
+        res.end(data);
+      } catch (e) {
+        console.log(e);
+        res.statusCode = 500;
+        res.end(e);
+      }
     } else if (req.method === 'GET' && path === '/state') {
       try {
         const response = await fetch(`http://stateserv:9000`);
@@ -53,7 +64,7 @@ http
         }
       });
     } else {
-      res.statusCode = 400;
+      res.statusCode = 404;
       res.end();
     }
   })
