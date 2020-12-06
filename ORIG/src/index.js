@@ -1,4 +1,4 @@
-import amqp from 'amqplib/callback_api.js'
+import amqp from 'amqplib/callback_api.js';
 
 function sleep(ms) {
   return new Promise((resolve) => {
@@ -13,20 +13,20 @@ async function init() {
     if (err) throw err;
     connection.createChannel(async (err, channel) => {
       if (err) throw err;
-      const exchange = 'my'
+      const exchange = 'my';
       const key = 'my.o';
-      channel.assertExchange(exchange, 'topic',{
-        durable: false
-      })
-
-      for (let i = 1; i < 4; i++) {
-        await sleep(3000)
+      channel.assertExchange(exchange, 'topic', {
+        durable: false,
+      });
+      let i = 0;
+      while (true) {
+        await sleep(3000);
         const message = `MSG_${i}`;
         channel.publish(exchange, key, Buffer.from(message));
+        i++;
       }
-    })
-  })
-
+    });
+  });
 }
 
 init();

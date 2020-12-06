@@ -1,4 +1,4 @@
 FROM node:14
-WORKDIR /HTTPSERV
+WORKDIR /APIGTW
 COPY ./ ./
 RUN npm install

@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-
+const timeout = 10000;
 describe('Test HTTP server', () => {
   it('Test that response status is 200', async () => {
     const response = await fetch(`http://httpserv:8082`);
@@ -8,6 +8,8 @@ describe('Test HTTP server', () => {
 });
 
 describe('Test API Gateway', () => {
-  const response = await fetch(`http://apigateway:8081`);
-  expect(response.status).toBe(200);
-})
+  it('Test that response status is 200', async () => {
+    const response = await fetch(`http://apigateway:8081/messages`);
+    expect(response.status).toBe(200);
+  });
+});
