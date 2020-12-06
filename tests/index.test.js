@@ -35,4 +35,18 @@ describe('Test API Gateway', () => {
     const data = await response.text();
     expect(data).toBe('INIT');
   });
+
+  it('Change state from INIT to PAUSED', () => {
+    await fetch(`http://apigateway:8081/state`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ state: 'INIT' }),
+    });
+    const response = await fetch(`http://apigateway:8081/state`);
+    const data = await response.text();
+    expect(data).toBe('INIT');
+  })
 });

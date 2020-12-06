@@ -13,18 +13,6 @@ http
         res.end(e.message);
       }
     } else if (req.method === 'PUT') {
-      try {
-        let body;
-        req.on('data', (chunk) => {
-          body += chunk.toString();
-        });
-        const parsedBody = parse(body);
-        console.log(parsedBody);
-        req.end(parsedBody);
-      } catch (e) {
-        res.statusCode = 500;
-        res.end(e.message);
-      }
     } else {
       res.end();
     }

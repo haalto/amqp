@@ -37,12 +37,20 @@ http
           res.statusCode = 400;
           res.end('{"error":"CANNOT_PARSE"}');
         }
+        const response = await fetch(`http://apigateway:8081/state`, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(parsed),
+        });
 
-        res.end(
-          JSON.stringify({
-            parsed,
-          })
-        );
+        if (response.status === 200) {
+          res.end(JSON.stringify({msg: 'State changed'}))
+        } else {
+          res.end('Something went wrong')
+        }
       });
     } else {
       res.statusCode = 400;
