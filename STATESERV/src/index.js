@@ -1,5 +1,6 @@
 import http from 'http';
 import fs from 'fs';
+import { exec } from 'child_process';
 const PORT = 9000;
 const FILENAME = 'logs.txt';
 let state = 'INIT';
@@ -63,7 +64,19 @@ http
         } else if (newState === 'SHUTDOWN') {
           state = newState;
           writeToLogs(newState);
-          res.end(JSON.stringify({ msg: 'State changed' }));
+          res.end(JSON.stringify({ msg: 'State changed' }), () => {
+            // exec('docker-compose down', (err, stdout, stderr) => {
+            //   if (err) {
+            //     //some err occurred
+            //     console.error(err);
+            //   } else {
+            //     // the *entire* stdout and stderr (buffered)
+            //     console.log(`stdout: ${stdout}`);
+            //     console.log(`stderr: ${stderr}`);
+            //   }
+            // });
+            process.exit(0);
+          });
         } else {
           res.end(JSON.stringify({ msg: 'State parameter not valid' }));
         }
