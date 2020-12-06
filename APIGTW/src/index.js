@@ -1,3 +1,7 @@
+/* 
+This service serves clients outside the service network and forwards requests.
+*/
+
 import http from 'http';
 import fetch from 'node-fetch';
 const PORT = 8081;

@@ -1,3 +1,7 @@
+/* 
+This service is responsible for sending messages to rabbitmq
+*/
+
 import amqp from 'amqplib/callback_api.js';
 
 function sleep(ms) {
