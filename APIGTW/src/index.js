@@ -13,6 +13,9 @@ http
         res.statusCode = 500;
         res.end(e.message);
       }
+    } else if (req.method === 'GET' && path === '/state') {
+      const response = await fetch(`http://stateserv:9000`);
+      res.end(await response.text());
     } else {
       res.end();
     }

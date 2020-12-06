@@ -42,12 +42,21 @@ services:
       - 8081:8081
     restart: always
     command: npm start
+  stateserv:
+    build:
+      context: ./STATESERV
+      dockerfile: Dockerfile
+    ports:
+      - 9000:9000
+    restart: always
+    command: npm start
   tests:
     build:
       context: ./tests
       dockerfile: Dockerfile
     command: dockerize
       -wait tcp://httpserv:8082 -timeout 20s
+      -wait tcp://stateserv:9000 -timeout 20s
       -wait tcp://apigateway:8081 -timeout 20s
       -wait tcp://rabbitmq:5672 -timeout 20s
       bash -c "npm run test:docker"
