@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cd .. && docker-compose up -d && cd ./tests && jest && cd .. && docker-compose down"
+    "test:local": "cd .. && docker-compose up -d && cd ./tests && jest && cd .. && docker-compose down",
+    "test:docker": "jest"
   },
   "author": "",
   "license": "ISC",

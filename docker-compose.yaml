@@ -34,5 +34,12 @@ services:
       - 8081:8081
     restart: always
     command: npm start
+  tests:
+    build:
+      context: ./tests
+      dockerfile: Dockerfile
+    command: dockerize
+      -wait tcp://httpserv:8081 -timeout 20s
+      bash -c "npm run test:docker"
 volumes:
   data:
