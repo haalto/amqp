@@ -48,7 +48,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - 9000:9000
-    restart: always
     command: npm start
 volumes:
   data:

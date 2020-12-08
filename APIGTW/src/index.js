@@ -62,7 +62,7 @@ http
         });
 
         if (response.status === 200) {
-          res.end(JSON.stringify({ msg: 'State changed' }));
+          res.end(await response.text());
         } else {
           res.end('Something went wrong');
         }

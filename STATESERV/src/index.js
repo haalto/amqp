@@ -65,6 +65,7 @@ http
           writeToLogs(newState);
           res.end(JSON.stringify({ msg: 'State changed to PAUSED' }));
         } else if (newState === 'SHUTDOWN') {
+          console.log(newState);
           state = newState;
           writeToLogs(newState);
           res.end(JSON.stringify({ msg: 'State changed to SHUTDOWN' }), () => {
