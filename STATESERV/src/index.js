@@ -3,7 +3,7 @@ This service keeps track of the application state and serves other services stat
 */
 
 import http from 'http';
-import fs from 'fs';
+import fs, { write } from 'fs';
 const PORT = 9000;
 const FILENAME = 'logs.txt';
 let state = 'INIT';
@@ -38,7 +38,7 @@ http
         body += data;
       });
 
-      req.on('end', () => {
+      req.on('end', async () => {
         let parsed;
 
         try {
@@ -47,7 +47,7 @@ http
           res.statusCode = 400;
           res.end('{"error":"CANNOT_PARSE"}');
         }
-        const newState = parsed.state;
+        const newState = await parsed.state;
 
         if (newState === state) {
           state = newState;
@@ -55,20 +55,20 @@ http
         } else if (newState === 'INIT') {
           state = newState;
           writeToLogs(newState);
-          res.end(JSON.stringify({ msg: 'State changed' }));
+          res.end(JSON.stringify({ msg: 'State changed to INIT' }));
         } else if (newState === 'RUNNING') {
           state = newState;
           writeToLogs(newState);
-          res.end(JSON.stringify({ msg: 'State changed' }));
+          res.end(JSON.stringify({ msg: 'State changed to RUNNING' }));
         } else if (newState === 'PAUSED') {
           state = newState;
           writeToLogs(newState);
-          res.end(JSON.stringify({ msg: 'State changed' }));
+          res.end(JSON.stringify({ msg: 'State changed to PAUSED' }));
         } else if (newState === 'SHUTDOWN') {
           state = newState;
           writeToLogs(newState);
-          res.end(JSON.stringify({ msg: 'State changed' }), () => {
-            process.exit(0);
+          res.end(JSON.stringify({ msg: 'State changed to SHUTDOWN' }), () => {
+            process.exit(1);
           });
         } else {
           res.end(JSON.stringify({ msg: 'State parameter not valid' }));
@@ -81,11 +81,11 @@ http
   })
   .listen(PORT, () => {
     console.log(`Server running on PORT: ${PORT}`);
+    writeToLogs('INIT');
   });
 
 function writeToLogs(state) {
   const log = `${new Date().toISOString(Date.now())}: ${state}\n`;
-
   fs.appendFile(FILENAME, log, 'utf8', (err) => {
     if (err) throw err;
   });

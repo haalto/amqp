@@ -32,6 +32,18 @@ async function init() {
         state = await response.text();
 
         //Send messages only when state is "RUNNING"
+        if (state === 'INIT') {
+          state = 'RUNNING';
+          await fetch(`http://stateserv:9000/state`, {
+            method: 'PUT',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ state: 'RUNNING' }),
+          });
+        }
+
         if (state === 'RUNNING') {
           await sleep(3000);
           const message = `MSG_${i}`;
