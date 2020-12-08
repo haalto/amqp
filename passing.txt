@@ -1,0 +1,908 @@
+Running with gitlab-runner 13.6.0 (8fa89735)
+  on docker-stable sBXQH777
+Preparing the "docker" executor
+00:50
+Using Docker executor with image docker:19.03.12 ...
+Starting service docker:dind ...
+Pulling docker image docker:dind ...
+Using docker image sha256:6f19136cf89d49aee8fa560eaab20e034c6ee17bbce55a9d33e1fbe5baa35b03 for docker:dind with digest docker@sha256:4972457c6a8a4309f9796fc3c8fd288923045ba0e214c102d92b70be99e249d1 ...
+Waiting for services to be up and running...
+*** WARNING: Service runner-sbxqh777-project-2-concurrent-0-b9ce06e28fe86741-docker-0 probably didn't start properly.
+Health check error:
+service "runner-sbxqh777-project-2-concurrent-0-b9ce06e28fe86741-docker-0-wait-for-service" timeout
+Health check container logs:
+Service container logs:
+2020-12-08T17:55:54.306799800Z Generating RSA private key, 4096 bit long modulus (2 primes)
+2020-12-08T17:55:54.734953700Z .............................................................................++++
+2020-12-08T17:55:54.927892800Z ..................................++++
+2020-12-08T17:55:54.930216800Z e is 65537 (0x010001)
+2020-12-08T17:55:54.959756800Z Generating RSA private key, 4096 bit long modulus (2 primes)
+2020-12-08T17:55:55.056709100Z .................++++
+2020-12-08T17:55:56.021226900Z .....................................................................................................................................++++
+2020-12-08T17:55:56.023509200Z e is 65537 (0x010001)
+2020-12-08T17:55:56.121756100Z Signature ok
+2020-12-08T17:55:56.128473500Z subject=CN = docker:dind server
+2020-12-08T17:55:56.128567500Z Getting CA Private Key
+2020-12-08T17:55:56.169398800Z /certs/server/cert.pem: OK
+2020-12-08T17:55:56.197108100Z Generating RSA private key, 4096 bit long modulus (2 primes)
+2020-12-08T17:55:56.718071800Z ........................................................++++
+2020-12-08T17:55:58.130848800Z .....................................................................................................................................................................................................................................................++++
+2020-12-08T17:55:58.133509300Z e is 65537 (0x010001)
+2020-12-08T17:55:58.170414300Z Signature ok
+2020-12-08T17:55:58.170456800Z subject=CN = docker:dind client
+2020-12-08T17:55:58.173210600Z Getting CA Private Key
+2020-12-08T17:55:58.193365600Z /certs/client/cert.pem: OK
+2020-12-08T17:55:58.202418600Z mount: permission denied (are you root?)
+2020-12-08T17:55:58.203365800Z Could not mount /sys/kernel/security.
+2020-12-08T17:55:58.203393700Z AppArmor detection and --privileged mode might break.
+2020-12-08T17:55:58.203705300Z mount: permission denied (are you root?)
+*********
+Pulling docker image docker:19.03.12 ...
+Using docker image sha256:81f5749c9058a7284e6acd8e126f2b882765a17b9ead14422b51cde1a110b85c for docker:19.03.12 with digest docker@sha256:d41efe7ad0df5a709cfd4e627c7e45104f39bbc08b1b40d7fb718c562b3ce135 ...
+Preparing environment
+00:01
+Running on runner-sbxqh777-project-2-concurrent-0 via gitlab-runner1...
+Getting source from Git repository
+00:03
+Fetching changes with git depth set to 50...
+Reinitialized existing Git repository in /builds/root/devops/.git/
+Checking out 7f44d820 as master...
+Skipping Git submodules setup
+Executing "step_script" stage of the job script
+28:20
+$ docker info
+Client:
+ Debug Mode: false
+Server:
+ Containers: 24
+  Running: 3
+  Paused: 0
+  Stopped: 21
+ Images: 336
+ Server Version: 19.03.12
+ Storage Driver: overlay2
+  Backing Filesystem: extfs
+  Supports d_type: true
+  Native Overlay Diff: true
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+ Swarm: inactive
+ Runtimes: runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 7ad184331fa3e55e52b890ea95e65ba581ae3429
+ runc version: dc9208a3303feef5b3839f4323d9beb36df0a9dd
+ init version: fec3683
+ Security Options:
+  seccomp
+   Profile: default
+ Kernel Version: 4.19.76-linuxkit
+ Operating System: Docker Desktop
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 8
+ Total Memory: 1.944GiB
+ Name: docker-desktop
+ ID: FPW3:F3SM:63DI:XBXZ:SVJL:CEM2:G5YQ:RUEZ:YEAK:CSUD:TLRX:DLZE
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: true
+  File Descriptors: 71
+  Goroutines: 91
+  System Time: 2020-12-08T17:56:37.6673548Z
+  EventsListeners: 4
+ HTTP Proxy: gateway.docker.internal:3128
+ HTTPS Proxy: gateway.docker.internal:3129
+ Registry: https://index.docker.io/v1/
+ Labels:
+ Experimental: false
+ Insecure Registries:
+  127.0.0.0/8
+ Live Restore Enabled: false
+ Product License: Community Engine
+$ apk add --no-cache docker-compose
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+(1/45) Installing libbz2 (1.0.8-r1)
+(2/45) Installing expat (2.2.9-r1)
+(3/45) Installing libffi (3.3-r2)
+(4/45) Installing gdbm (1.13-r1)
+(5/45) Installing xz-libs (5.2.5-r0)
+(6/45) Installing readline (8.0.4-r0)
+(7/45) Installing sqlite-libs (3.32.1-r0)
+(8/45) Installing python3 (3.8.5-r0)
+(9/45) Installing py3-ordered-set (4.0.1-r0)
+(10/45) Installing py3-appdirs (1.4.4-r1)
+(11/45) Installing py3-parsing (2.4.7-r0)
+(12/45) Installing py3-six (1.15.0-r0)
+(13/45) Installing py3-packaging (20.4-r0)
+(14/45) Installing py3-setuptools (47.0.0-r0)
+(15/45) Installing dockerpy-creds (0.4.0-r2)
+(16/45) Installing py3-cparser (2.20-r0)
+(17/45) Installing py3-cffi (1.14.0-r2)
+(18/45) Installing py3-idna (2.9-r0)
+(19/45) Installing py3-asn1crypto (1.3.0-r0)
+(20/45) Installing py3-cryptography (2.9.2-r0)
+(21/45) Installing py3-ipaddress (1.0.23-r1)
+(22/45) Installing py3-chardet (3.0.4-r4)
+(23/45) Installing py3-certifi (2020.4.5.1-r0)
+(24/45) Installing py3-urllib3 (1.25.9-r0)
+(25/45) Installing py3-requests (2.23.0-r0)
+(26/45) Installing py3-websocket-client (0.57.0-r0)
+(27/45) Installing docker-py (4.2.0-r0)
+(28/45) Installing py3-cached-property (1.5.1-r1)
+(29/45) Installing py3-dockerpty (0.4.1-r2)
+(30/45) Installing py3-docopt (0.6.2-r5)
+(31/45) Installing py3-more-itertools (8.3.0-r0)
+(32/45) Installing py3-zipp (1.0.0-r0)
+(33/45) Installing py3-importlib-metadata (1.6.0-r0)
+(34/45) Installing py3-pyrsistent (0.16.0-r0)
+(35/45) Installing py3-attrs (19.3.0-r1)
+(36/45) Installing py3-jsonschema (3.2.0-r0)
+(37/45) Installing py3-asn1 (0.4.7-r2)
+(38/45) Installing py3-bcrypt (3.1.7-r2)
+(39/45) Installing py3-pynacl (1.4.0-r0)
+(40/45) Installing py3-paramiko (2.7.1-r0)
+(41/45) Installing py3-pysocks (1.7.1-r1)
+(42/45) Installing py3-texttable (1.6.2-r1)
+(43/45) Installing yaml (0.2.4-r1)
+(44/45) Installing py3-yaml (5.3.1-r0)
+(45/45) Installing docker-compose (1.25.4-r2)
+Executing busybox-1.31.1-r16.trigger
+OK: 79 MiB in 65 packages
+$ docker-compose -f docker-compose.test.yml up --build --abort-on-container-exit
+Building orig
+Step 1/4 : FROM node:14
+ ---> 4c7835fa737e
+Step 2/4 : WORKDIR /usr/app/
+ ---> Using cache
+ ---> b1fffcfc8629
+Step 3/4 : COPY ./ ./
+ ---> Using cache
+ ---> a1731fe6ac8f
+Step 4/4 : RUN npm install
+ ---> Using cache
+ ---> cc6242e79245
+Successfully built cc6242e79245
+Successfully tagged devops_orig:latest
+Building imed
+Step 1/4 : FROM node:14
+ ---> 4c7835fa737e
+Step 2/4 : WORKDIR /usr/app/
+ ---> Using cache
+ ---> b1fffcfc8629
+Step 3/4 : COPY ./ ./
+ ---> Using cache
+ ---> 2abdbf3a0e0d
+Step 4/4 : RUN npm install
+ ---> Using cache
+ ---> 3c1774a6b07b
+Successfully built 3c1774a6b07b
+Successfully tagged devops_imed:latest
+Building obser
+Step 1/4 : FROM node:14
+ ---> 4c7835fa737e
+Step 2/4 : WORKDIR /OBSE
+ ---> Using cache
+ ---> 2b4e6e00ab0b
+Step 3/4 : COPY ./ ./
+ ---> Using cache
+ ---> 9faf6ba9d8e7
+Step 4/4 : RUN npm install
+ ---> Using cache
+ ---> 1dd683aebe28
+Successfully built 1dd683aebe28
+Successfully tagged devops_obser:latest
+Building httpserv
+Step 1/4 : FROM node:14
+ ---> 4c7835fa737e
+Step 2/4 : WORKDIR /HTTPSERV
+ ---> Using cache
+ ---> 793872116167
+Step 3/4 : COPY ./ ./
+ ---> Using cache
+ ---> 1186519f90b9
+Step 4/4 : RUN npm install
+ ---> Using cache
+ ---> 66546d34ea4c
+Successfully built 66546d34ea4c
+Successfully tagged devops_httpserv:latest
+Building apigateway
+Step 1/4 : FROM node:14
+ ---> 4c7835fa737e
+Step 2/4 : WORKDIR /APIGTW
+ ---> Using cache
+ ---> 6f024fc5381e
+Step 3/4 : COPY ./ ./
+ ---> Using cache
+ ---> deee12c31e70
+Step 4/4 : RUN npm install
+ ---> Using cache
+ ---> 5c8ae7a9ab2e
+Successfully built 5c8ae7a9ab2e
+Successfully tagged devops_apigateway:latest
+Building stateserv
+Step 1/4 : FROM node:14
+ ---> 4c7835fa737e
+Step 2/4 : WORKDIR /STATESERV
+ ---> Using cache
+ ---> 5b5d8b501b75
+Step 3/4 : COPY ./ ./
+ ---> Using cache
+ ---> ccb7244f8f3d
+Step 4/4 : RUN npm install
+ ---> Using cache
+ ---> 8a6fd93ca317
+Successfully built 8a6fd93ca317
+Successfully tagged devops_stateserv:latest
+Building tests
+Step 1/6 : FROM node:14
+ ---> 4c7835fa737e
+Step 2/6 : ENV DOCKERIZE_VERSION v0.6.0
+ ---> Using cache
+ ---> 225a547b1725
+Step 3/6 : RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz   && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz   && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+ ---> Using cache
+ ---> 0c32e54caa46
+Step 4/6 : WORKDIR /tests
+ ---> Using cache
+ ---> 651b21238d3e
+Step 5/6 : COPY ./ ./
+ ---> Using cache
+ ---> 755d25b5493f
+Step 6/6 : RUN npm install
+ ---> Using cache
+ ---> 3defad09fd93
+Successfully built 3defad09fd93
+Successfully tagged devops_tests:latest
+Starting devops_rabbitmq_1 ... 
+Starting devops_apigateway_1 ... 
+Recreating devops_stateserv_1 ... 
+Starting devops_httpserv_1    ... 
+Starting devops_tests_1       ... 
+Recreating devops_obser_1     ... 
+Recreating devops_imed_1      ... 
+Recreating devops_orig_1      ... 
+Attaching to devops_rabbitmq_1, devops_tests_1, devops_apigateway_1, devops_httpserv_1, devops_stateserv_1, devops_imed_1, devops_orig_1, devops_obser_1
+apigateway_1  | 
+apigateway_1  | > httpserv@1.0.0 start /APIGTW
+apigateway_1  | > cd src && node index.js
+apigateway_1  | 
+httpserv_1    | 
+httpserv_1    | > httpserv@1.0.0 start /HTTPSERV
+httpserv_1    | > cd src && node index.js
+httpserv_1    | 
+httpserv_1    | Server running on PORT: 8082
+stateserv_1   | 
+stateserv_1   | > stateserv@1.0.0 start /STATESERV
+stateserv_1   | > cd src && node index.js
+stateserv_1   | 
+stateserv_1   | Server running on PORT: 9000
+tests_1       | 2020/12/08 17:56:54 Waiting for: tcp://httpserv:8082
+tests_1       | 2020/12/08 17:56:54 Waiting for: tcp://stateserv:9000
+tests_1       | 2020/12/08 17:56:54 Waiting for: tcp://apigateway:8081
+tests_1       | 2020/12/08 17:56:54 Waiting for: tcp://rabbitmq:5672
+tests_1       | 2020/12/08 17:56:54 Problem with dial: dial tcp 172.23.0.3:5672: getsockopt: connection refused. Sleeping 1s
+tests_1       | 2020/12/08 17:56:54 Problem with dial: dial tcp 172.23.0.6:9000: getsockopt: connection refused. Sleeping 1s
+tests_1       | 2020/12/08 17:56:54 Problem with dial: dial tcp 172.23.0.2:8081: getsockopt: connection refused. Sleeping 1s
+apigateway_1  | Server running on PORT: 8081
+tests_1       | 2020/12/08 17:56:55 Connected to tcp://stateserv:9000
+tests_1       | 2020/12/08 17:56:55 Connected to tcp://apigateway:8081
+tests_1       | 2020/12/08 17:56:55 Problem with dial: dial tcp 172.23.0.3:5672: getsockopt: connection refused. Sleeping 1s
+tests_1       | 2020/12/08 17:56:55 Connected to tcp://httpserv:8082
+imed_1        | 
+imed_1        | > imed@1.0.0 start /usr/app
+imed_1        | > cd src && node index.js
+imed_1        | 
+obser_1       | 
+obser_1       | > obse@1.0.0 start /OBSE
+obser_1       | > cd src && node index.js
+obser_1       | 
+orig_1        | 
+orig_1        | > orig@1.0.0 start /usr/app
+orig_1        | > cd src && node index.js
+orig_1        | 
+tests_1       | 2020/12/08 17:56:56 Problem with dial: dial tcp 172.23.0.3:5672: getsockopt: connection refused. Sleeping 1s
+rabbitmq_1    | Configuring logger redirection
+tests_1       | 2020/12/08 17:56:57 Problem with dial: dial tcp 172.23.0.3:5672: getsockopt: connection refused. Sleeping 1s
+tests_1       | 2020/12/08 17:56:58 Problem with dial: dial tcp 172.23.0.3:5672: getsockopt: connection refused. Sleeping 1s
+tests_1       | 2020/12/08 17:56:59 Problem with dial: dial tcp 172.23.0.3:5672: getsockopt: connection refused. Sleeping 1s
+rabbitmq_1    | 2020-12-08 17:56:59.579 [debug] <0.287.0> Lager installed handler error_logger_lager_h into error_logger
+rabbitmq_1    | 2020-12-08 17:56:59.585 [debug] <0.290.0> Lager installed handler lager_forwarder_backend into error_logger_lager_event
+rabbitmq_1    | 2020-12-08 17:56:59.585 [debug] <0.293.0> Lager installed handler lager_forwarder_backend into rabbit_log_lager_event
+rabbitmq_1    | 2020-12-08 17:56:59.585 [debug] <0.302.0> Lager installed handler lager_forwarder_backend into rabbit_log_feature_flags_lager_event
+rabbitmq_1    | 2020-12-08 17:56:59.585 [debug] <0.296.0> Lager installed handler lager_forwarder_backend into rabbit_log_channel_lager_event
+rabbitmq_1    | 2020-12-08 17:56:59.585 [debug] <0.305.0> Lager installed handler lager_forwarder_backend into rabbit_log_federation_lager_event
+rabbitmq_1    | 2020-12-08 17:56:59.585 [debug] <0.308.0> Lager installed handler lager_forwarder_backend into rabbit_log_ldap_lager_event
+rabbitmq_1    | 2020-12-08 17:56:59.585 [debug] <0.311.0> Lager installed handler lager_forwarder_backend into rabbit_log_mirroring_lager_event
+rabbitmq_1    | 2020-12-08 17:56:59.585 [debug] <0.314.0> Lager installed handler lager_forwarder_backend into rabbit_log_prelaunch_lager_event
+rabbitmq_1    | 2020-12-08 17:56:59.585 [debug] <0.317.0> Lager installed handler lager_forwarder_backend into rabbit_log_queue_lager_event
+rabbitmq_1    | 2020-12-08 17:56:59.585 [debug] <0.320.0> Lager installed handler lager_forwarder_backend into rabbit_log_ra_lager_event
+rabbitmq_1    | 2020-12-08 17:56:59.585 [debug] <0.299.0> Lager installed handler lager_forwarder_backend into rabbit_log_connection_lager_event
+rabbitmq_1    | 2020-12-08 17:56:59.585 [debug] <0.323.0> Lager installed handler lager_forwarder_backend into rabbit_log_shovel_lager_event
+rabbitmq_1    | 2020-12-08 17:56:59.585 [debug] <0.326.0> Lager installed handler lager_forwarder_backend into rabbit_log_upgrade_lager_event
+rabbitmq_1    | 2020-12-08 17:56:59.607 [info] <0.44.0> Application lager started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:00.079 [debug] <0.283.0> Lager installed handler lager_backend_throttle into lager_event
+imed_1        | file:///usr/app/src/index.js:17
+imed_1        |     if (err) throw err;
+imed_1        |              ^
+imed_1        | 
+imed_1        | Error: connect ECONNREFUSED 172.23.0.3:5672
+imed_1        |     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16) {
+imed_1        |   errno: -111,
+imed_1        |   code: 'ECONNREFUSED',
+imed_1        |   syscall: 'connect',
+imed_1        |   address: '172.23.0.3',
+imed_1        |   port: 5672
+imed_1        | }
+imed_1        | npm ERR! code ELIFECYCLE
+imed_1        | npm ERR! errno 1
+imed_1        | npm ERR! imed@1.0.0 start: `cd src && node index.js`
+imed_1        | npm ERR! Exit status 1
+imed_1        | npm ERR! 
+imed_1        | npm ERR! Failed at the imed@1.0.0 start script.
+imed_1        | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+imed_1        | 
+imed_1        | npm ERR! A complete log of this run can be found in:
+imed_1        | npm ERR!     /root/.npm/_logs/2020-12-08T17_57_00_182Z-debug.log
+obser_1       | file:///OBSE/src/index.js:21
+obser_1       |     if (err) throw err;
+obser_1       |              ^
+obser_1       | 
+obser_1       | Error: connect ECONNREFUSED 172.23.0.3:5672
+obser_1       |     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16) {
+obser_1       |   errno: -111,
+obser_1       |   code: 'ECONNREFUSED',
+obser_1       |   syscall: 'connect',
+obser_1       |   address: '172.23.0.3',
+obser_1       |   port: 5672
+obser_1       | }
+obser_1       | npm ERR! code ELIFECYCLE
+obser_1       | npm ERR! errno 1
+obser_1       | npm ERR! obse@1.0.0 start: `cd src && node index.js`
+obser_1       | npm ERR! Exit status 1
+obser_1       | npm ERR! 
+obser_1       | npm ERR! Failed at the obse@1.0.0 start script.
+obser_1       | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+obser_1       | 
+obser_1       | npm ERR! A complete log of this run can be found in:
+obser_1       | npm ERR!     /root/.npm/_logs/2020-12-08T17_57_00_231Z-debug.log
+tests_1       | 2020/12/08 17:57:00 Problem with dial: dial tcp 172.23.0.3:5672: getsockopt: connection refused. Sleeping 1s
+tests_1       | 2020/12/08 17:57:01 Problem with dial: dial tcp 172.23.0.3:5672: getsockopt: connection refused. Sleeping 1s
+imed_1        | 
+imed_1        | > imed@1.0.0 start /usr/app
+imed_1        | > cd src && node index.js
+imed_1        | 
+obser_1       | 
+obser_1       | > obse@1.0.0 start /OBSE
+obser_1       | > cd src && node index.js
+obser_1       | 
+rabbitmq_1    | 2020-12-08 17:57:02.224 [info] <0.44.0> Application mnesia started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:02.225 [info] <0.272.0> 
+rabbitmq_1    |  Starting RabbitMQ 3.8.9 on Erlang 23.1.4
+rabbitmq_1    |  Copyright (c) 2007-2020 VMware, Inc. or its affiliates.
+rabbitmq_1    |  Licensed under the MPL 2.0. Website: https://rabbitmq.com
+rabbitmq_1    | 
+rabbitmq_1    |   ##  ##      RabbitMQ 3.8.9
+rabbitmq_1    |   ##  ##
+rabbitmq_1    |   ##########  Copyright (c) 2007-2020 VMware, Inc. or its affiliates.
+rabbitmq_1    |   ######  ##
+rabbitmq_1    |   ##########  Licensed under the MPL 2.0. Website: https://rabbitmq.com
+rabbitmq_1    | 
+rabbitmq_1    |   Doc guides: https://rabbitmq.com/documentation.html
+rabbitmq_1    |   Support:    https://rabbitmq.com/contact.html
+rabbitmq_1    |   Tutorials:  https://rabbitmq.com/getstarted.html
+rabbitmq_1    |   Monitoring: https://rabbitmq.com/monitoring.html
+rabbitmq_1    | 
+rabbitmq_1    |   Logs: <stdout>
+rabbitmq_1    | 
+rabbitmq_1    |   Config file(s): /etc/rabbitmq/rabbitmq.conf
+rabbitmq_1    |                   /etc/rabbitmq/conf.d/management_agent.disable_metrics_collector.conf
+rabbitmq_1    | 
+rabbitmq_1    |   Starting broker...2020-12-08 17:57:02.231 [info] <0.272.0> 
+rabbitmq_1    |  node           : rabbit@my-rabbit
+rabbitmq_1    |  home dir       : /var/lib/rabbitmq
+rabbitmq_1    |  config file(s) : /etc/rabbitmq/rabbitmq.conf
+rabbitmq_1    |                 : /etc/rabbitmq/conf.d/management_agent.disable_metrics_collector.conf
+rabbitmq_1    |  cookie hash    : Ela4HbfBpO8ytEyLFCa5Rg==
+rabbitmq_1    |  log(s)         : <stdout>
+rabbitmq_1    |  database dir   : /var/lib/rabbitmq/mnesia/rabbit@my-rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.246 [info] <0.272.0> Running boot step pre_boot defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.246 [info] <0.272.0> Running boot step rabbit_core_metrics defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.247 [info] <0.272.0> Running boot step rabbit_alarm defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.260 [info] <0.415.0> Memory high watermark set to 796 MiB (834840166 bytes) of 1990 MiB (2087100416 bytes) total
+rabbitmq_1    | 2020-12-08 17:57:02.267 [info] <0.417.0> Enabling free disk space monitoring
+rabbitmq_1    | 2020-12-08 17:57:02.267 [info] <0.417.0> Disk free limit set to 50MB
+rabbitmq_1    | 2020-12-08 17:57:02.270 [info] <0.272.0> Running boot step code_server_cache defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.270 [info] <0.272.0> Running boot step file_handle_cache defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.271 [info] <0.420.0> Limiting to approx 1048479 file handles (943629 sockets)
+rabbitmq_1    | 2020-12-08 17:57:02.271 [info] <0.421.0> FHC read buffering:  OFF
+rabbitmq_1    | 2020-12-08 17:57:02.271 [info] <0.421.0> FHC write buffering: ON
+rabbitmq_1    | 2020-12-08 17:57:02.272 [info] <0.272.0> Running boot step worker_pool defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.272 [info] <0.373.0> Will use 8 processes for default worker pool
+rabbitmq_1    | 2020-12-08 17:57:02.272 [info] <0.373.0> Starting worker pool 'worker_pool' with 8 processes in it
+rabbitmq_1    | 2020-12-08 17:57:02.275 [info] <0.272.0> Running boot step database defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.277 [info] <0.272.0> Waiting for Mnesia tables for 30000 ms, 9 retries left
+rabbitmq_1    | 2020-12-08 17:57:02.278 [info] <0.272.0> Successfully synced tables from a peer
+rabbitmq_1    | 2020-12-08 17:57:02.278 [info] <0.272.0> Waiting for Mnesia tables for 30000 ms, 9 retries left
+rabbitmq_1    | 2020-12-08 17:57:02.278 [info] <0.272.0> Successfully synced tables from a peer
+rabbitmq_1    | 2020-12-08 17:57:02.293 [info] <0.272.0> Waiting for Mnesia tables for 30000 ms, 9 retries left
+rabbitmq_1    | 2020-12-08 17:57:02.293 [info] <0.272.0> Successfully synced tables from a peer
+rabbitmq_1    | 2020-12-08 17:57:02.293 [info] <0.272.0> Peer discovery backend rabbit_peer_discovery_classic_config does not support registration, skipping registration.
+rabbitmq_1    | 2020-12-08 17:57:02.293 [info] <0.272.0> Running boot step database_sync defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.294 [info] <0.272.0> Running boot step feature_flags defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.294 [info] <0.272.0> Running boot step codec_correctness_check defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.294 [info] <0.272.0> Running boot step external_infrastructure defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.294 [info] <0.272.0> Running boot step rabbit_registry defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.294 [info] <0.272.0> Running boot step rabbit_auth_mechanism_cr_demo defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.294 [info] <0.272.0> Running boot step rabbit_queue_location_random defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.295 [info] <0.272.0> Running boot step rabbit_event defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.295 [info] <0.272.0> Running boot step rabbit_auth_mechanism_amqplain defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.295 [info] <0.272.0> Running boot step rabbit_auth_mechanism_plain defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.295 [info] <0.272.0> Running boot step rabbit_exchange_type_direct defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.296 [info] <0.272.0> Running boot step rabbit_exchange_type_fanout defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.296 [info] <0.272.0> Running boot step rabbit_exchange_type_headers defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.296 [info] <0.272.0> Running boot step rabbit_exchange_type_topic defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.296 [info] <0.272.0> Running boot step rabbit_mirror_queue_mode_all defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.297 [info] <0.272.0> Running boot step rabbit_mirror_queue_mode_exactly defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.297 [info] <0.272.0> Running boot step rabbit_mirror_queue_mode_nodes defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.297 [info] <0.272.0> Running boot step rabbit_priority_queue defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.297 [info] <0.272.0> Priority queues enabled, real BQ is rabbit_variable_queue
+rabbitmq_1    | 2020-12-08 17:57:02.297 [info] <0.272.0> Running boot step rabbit_queue_location_client_local defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.297 [info] <0.272.0> Running boot step rabbit_queue_location_min_masters defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.297 [info] <0.272.0> Running boot step kernel_ready defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.297 [info] <0.272.0> Running boot step rabbit_sysmon_minder defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.298 [info] <0.272.0> Running boot step rabbit_epmd_monitor defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.308 [info] <0.447.0> epmd monitor knows us, inter-node communication (distribution) port: 25672
+rabbitmq_1    | 2020-12-08 17:57:02.308 [info] <0.272.0> Running boot step guid_generator defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.311 [info] <0.272.0> Running boot step rabbit_node_monitor defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.311 [info] <0.451.0> Starting rabbit_node_monitor
+rabbitmq_1    | 2020-12-08 17:57:02.312 [info] <0.272.0> Running boot step delegate_sup defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.314 [info] <0.272.0> Running boot step rabbit_memory_monitor defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.314 [info] <0.272.0> Running boot step core_initialized defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.314 [info] <0.272.0> Running boot step upgrade_queues defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.326 [info] <0.272.0> Running boot step rabbit_connection_tracking defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.327 [info] <0.272.0> Running boot step rabbit_connection_tracking_handler defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.327 [info] <0.272.0> Running boot step rabbit_exchange_parameters defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.327 [info] <0.272.0> Running boot step rabbit_mirror_queue_misc defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.327 [info] <0.272.0> Running boot step rabbit_policies defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.328 [info] <0.272.0> Running boot step rabbit_policy defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.328 [info] <0.272.0> Running boot step rabbit_queue_location_validator defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.329 [info] <0.272.0> Running boot step rabbit_quorum_memory_manager defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.329 [info] <0.272.0> Running boot step rabbit_vhost_limit defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.329 [info] <0.272.0> Running boot step recovery defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.330 [info] <0.480.0> Making sure data directory '/var/lib/rabbitmq/mnesia/rabbit@my-rabbit/msg_stores/vhosts/628WB79CIFDYO9LJI6DKMI09L' for vhost '/' exists
+rabbitmq_1    | 2020-12-08 17:57:02.334 [info] <0.480.0> Starting message stores for vhost '/'
+rabbitmq_1    | 2020-12-08 17:57:02.335 [info] <0.484.0> Message store "628WB79CIFDYO9LJI6DKMI09L/msg_store_transient": using rabbit_msg_store_ets_index to provide index
+rabbitmq_1    | 2020-12-08 17:57:02.338 [info] <0.480.0> Started message store of type transient for vhost '/'
+rabbitmq_1    | 2020-12-08 17:57:02.338 [info] <0.488.0> Message store "628WB79CIFDYO9LJI6DKMI09L/msg_store_persistent": using rabbit_msg_store_ets_index to provide index
+rabbitmq_1    | 2020-12-08 17:57:02.344 [info] <0.480.0> Started message store of type persistent for vhost '/'
+rabbitmq_1    | 2020-12-08 17:57:02.346 [info] <0.272.0> Running boot step empty_db_check defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.346 [info] <0.272.0> Will not seed default virtual host and user: have definitions to load...
+rabbitmq_1    | 2020-12-08 17:57:02.346 [info] <0.272.0> Running boot step rabbit_looking_glass defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.346 [info] <0.272.0> Running boot step rabbit_core_metrics_gc defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.346 [info] <0.272.0> Running boot step background_gc defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.346 [info] <0.272.0> Running boot step connection_tracking defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.347 [info] <0.272.0> Setting up a table for connection tracking on this node: 'tracked_connection_on_node_rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:02.347 [info] <0.272.0> Setting up a table for per-vhost connection counting on this node: 'tracked_connection_per_vhost_on_node_rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:02.347 [info] <0.272.0> Running boot step routing_ready defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.347 [info] <0.272.0> Running boot step pre_flight defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.347 [info] <0.272.0> Running boot step notify_cluster defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.347 [info] <0.272.0> Running boot step networking defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.347 [info] <0.272.0> Running boot step definition_import_worker_pool defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.348 [info] <0.373.0> Starting worker pool 'definition_import_pool' with 8 processes in it
+rabbitmq_1    | 2020-12-08 17:57:02.350 [info] <0.272.0> Running boot step cluster_name defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.350 [info] <0.272.0> Running boot step direct_client defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:02.351 [info] <0.44.0> Application rabbit started on node 'rabbit@my-rabbit'
+tests_1       | 2020/12/08 17:57:02 Problem with dial: dial tcp 172.23.0.3:5672: getsockopt: connection refused. Sleeping 1s
+rabbitmq_1    | 2020-12-08 17:57:02.620 [info] <0.522.0> Feature flags: list of feature flags found:
+rabbitmq_1    | 2020-12-08 17:57:02.620 [info] <0.522.0> Feature flags:   [ ] drop_unroutable_metric
+rabbitmq_1    | 2020-12-08 17:57:02.620 [info] <0.522.0> Feature flags:   [ ] empty_basic_get_metric
+rabbitmq_1    | 2020-12-08 17:57:02.621 [info] <0.522.0> Feature flags:   [x] implicit_default_bindings
+rabbitmq_1    | 2020-12-08 17:57:02.621 [info] <0.522.0> Feature flags:   [x] maintenance_mode_status
+rabbitmq_1    | 2020-12-08 17:57:02.621 [info] <0.522.0> Feature flags:   [x] quorum_queue
+rabbitmq_1    | 2020-12-08 17:57:02.621 [info] <0.522.0> Feature flags:   [x] virtual_host_metadata
+rabbitmq_1    | 2020-12-08 17:57:02.621 [info] <0.522.0> Feature flags: feature flag states written to disk: yes
+rabbitmq_1    | 2020-12-08 17:57:02.733 [info] <0.44.0> Application cowlib started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:02.742 [info] <0.44.0> Application cowboy started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:02.749 [info] <0.522.0> Running boot step rabbit_mgmt_db_handler defined by app rabbitmq_management_agent
+rabbitmq_1    | 2020-12-08 17:57:02.749 [info] <0.522.0> Management plugin: using rates mode 'basic'
+rabbitmq_1    | 2020-12-08 17:57:02.755 [info] <0.44.0> Application rabbitmq_management_agent started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:02.776 [info] <0.44.0> Application prometheus started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:02.785 [info] <0.44.0> Application rabbitmq_web_dispatch started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:02.796 [info] <0.553.0> Prometheus metrics: HTTP (non-TLS) listener started on port 15692
+rabbitmq_1    | 2020-12-08 17:57:02.796 [info] <0.522.0> Ready to start client connection listeners
+rabbitmq_1    | 2020-12-08 17:57:02.796 [info] <0.44.0> Application rabbitmq_prometheus started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:02.800 [info] <0.672.0> started TCP listener on [::]:5672
+rabbitmq_1    |  completed with 3 plugins.
+rabbitmq_1    | 2020-12-08 17:57:03.063 [info] <0.522.0> Server startup complete; 3 plugins started.
+rabbitmq_1    |  * rabbitmq_prometheus
+rabbitmq_1    |  * rabbitmq_web_dispatch
+rabbitmq_1    |  * rabbitmq_management_agent
+rabbitmq_1    | 2020-12-08 17:57:03.063 [info] <0.522.0> Resetting node maintenance status
+tests_1       | 2020/12/08 17:57:03 Connected to tcp://rabbitmq:5672
+tests_1       | 
+tests_1       | > tests@1.0.0 test:docker /tests
+tests_1       | > jest
+tests_1       | 
+rabbitmq_1    | 2020-12-08 17:57:05.882 [info] <0.679.0> accepting AMQP connection <0.679.0> (172.23.0.7:46074 -> 172.23.0.3:5672)
+rabbitmq_1    | 2020-12-08 17:57:05.887 [info] <0.682.0> accepting AMQP connection <0.682.0> (172.23.0.9:48044 -> 172.23.0.3:5672)
+rabbitmq_1    | 2020-12-08 17:57:05.935 [info] <0.679.0> connection <0.679.0> (172.23.0.7:46074 -> 172.23.0.3:5672): user 'guest' authenticated and granted access to vhost '/'
+rabbitmq_1    | 2020-12-08 17:57:05.943 [info] <0.682.0> connection <0.682.0> (172.23.0.9:48044 -> 172.23.0.3:5672): user 'guest' authenticated and granted access to vhost '/'
+rabbitmq_1    | 2020-12-08 17:57:06.272 [info] <0.712.0> accepting AMQP connection <0.712.0> (172.23.0.8:57036 -> 172.23.0.3:5672)
+rabbitmq_1    | 2020-12-08 17:57:06.334 [info] <0.712.0> connection <0.712.0> (172.23.0.8:57036 -> 172.23.0.3:5672): user 'guest' authenticated and granted access to vhost '/'
+apigateway_1  | gatewat get logs
+stateserv_1   | getting logs
+tests_1       | PASS ./index.test.js
+tests_1       |   Test HTTP server
+tests_1       |     ✓ Test that response status is 200 (52 ms)
+tests_1       |   Test API Gateway
+tests_1       |     ✓ Test that response status is 200 (44 ms)
+tests_1       |     ✓ Responses with status code 200 when sending PUT request with payload (15 ms)
+tests_1       |     ✓ Responses with status code 200 when sending PUT request with payload (7 ms)
+tests_1       |     ✓ Returned state should be INIT (8 ms)
+tests_1       |     ✓ Change state from INIT to PAUSED (10 ms)
+tests_1       |     ✓ If parameter is not valid state does is not changed (8 ms)
+tests_1       |     ✓ Requesting logs returns status code 200 (10 ms)
+tests_1       | 
+tests_1       | Test Suites: 1 passed, 1 total
+tests_1       | Tests:       8 passed, 8 total
+tests_1       | Snapshots:   0 total
+tests_1       | Time:        2.165 s
+tests_1       | Ran all test suites.
+tests_1       | 2020/12/08 17:57:07 Command finished successfully.
+devops_tests_1 exited with code 0
+Stopping devops_orig_1        ... 
+Stopping devops_obser_1       ... 
+Stopping devops_imed_1        ... 
+Stopping devops_stateserv_1   ... 
+Stopping devops_apigateway_1  ... 
+Stopping devops_httpserv_1    ... 
+Stopping devops_rabbitmq_1    ... 
+Aborting on container exit...
+$ docker-compose -f docker-compose.yaml up --build --abort-on-container-exit
+Found orphan containers (devops_tests_1) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+Building orig
+Step 1/4 : FROM node:14
+ ---> 4c7835fa737e
+Step 2/4 : WORKDIR /usr/app/
+ ---> Using cache
+ ---> b1fffcfc8629
+Step 3/4 : COPY ./ ./
+ ---> Using cache
+ ---> a1731fe6ac8f
+Step 4/4 : RUN npm install
+ ---> Using cache
+ ---> cc6242e79245
+Successfully built cc6242e79245
+Building imed
+Successfully tagged devops_orig:latest
+Step 1/4 : FROM node:14
+ ---> 4c7835fa737e
+Step 2/4 : WORKDIR /usr/app/
+ ---> Using cache
+ ---> b1fffcfc8629
+Step 3/4 : COPY ./ ./
+ ---> Using cache
+ ---> 2abdbf3a0e0d
+Step 4/4 : RUN npm install
+ ---> Using cache
+ ---> 3c1774a6b07b
+Successfully built 3c1774a6b07b
+Successfully tagged devops_imed:latest
+Building obser
+Step 1/4 : FROM node:14
+ ---> 4c7835fa737e
+Step 2/4 : WORKDIR /OBSE
+ ---> Using cache
+ ---> 2b4e6e00ab0b
+Step 3/4 : COPY ./ ./
+ ---> Using cache
+ ---> 9faf6ba9d8e7
+Step 4/4 : RUN npm install
+ ---> Using cache
+ ---> 1dd683aebe28
+Successfully built 1dd683aebe28
+Successfully tagged devops_obser:latest
+Building httpserv
+Step 1/4 : FROM node:14
+ ---> 4c7835fa737e
+Step 2/4 : WORKDIR /HTTPSERV
+ ---> Using cache
+ ---> 793872116167
+Step 3/4 : COPY ./ ./
+ ---> Using cache
+ ---> 1186519f90b9
+Step 4/4 : RUN npm install
+ ---> Using cache
+ ---> 66546d34ea4c
+Successfully built 66546d34ea4c
+Successfully tagged devops_httpserv:latest
+Building apigateway
+Step 1/4 : FROM node:14
+ ---> 4c7835fa737e
+Step 2/4 : WORKDIR /APIGTW
+ ---> Using cache
+ ---> 6f024fc5381e
+Step 3/4 : COPY ./ ./
+ ---> Using cache
+ ---> deee12c31e70
+Step 4/4 : RUN npm install
+ ---> Using cache
+ ---> 5c8ae7a9ab2e
+Successfully built 5c8ae7a9ab2e
+Successfully tagged devops_apigateway:latest
+Building stateserv
+Step 1/4 : FROM node:14
+ ---> 4c7835fa737e
+Step 2/4 : WORKDIR /STATESERV
+ ---> Using cache
+ ---> 5b5d8b501b75
+Step 3/4 : COPY ./ ./
+ ---> Using cache
+ ---> ccb7244f8f3d
+Step 4/4 : RUN npm install
+ ---> Using cache
+ ---> 8a6fd93ca317
+Successfully built 8a6fd93ca317
+Successfully tagged devops_stateserv:latest
+Starting devops_httpserv_1 ... 
+Starting devops_rabbitmq_1 ... 
+Starting devops_apigateway_1 ... 
+Recreating devops_stateserv_1 ... 
+Starting devops_obser_1       ... 
+Starting devops_orig_1        ... 
+Starting devops_imed_1        ... 
+Attaching to devops_rabbitmq_1, devops_httpserv_1, devops_apigateway_1, devops_stateserv_1, devops_orig_1, devops_imed_1, devops_obser_1
+httpserv_1    | 
+httpserv_1    | > httpserv@1.0.0 start /HTTPSERV
+httpserv_1    | > cd src && node index.js
+httpserv_1    | 
+apigateway_1  | 
+apigateway_1  | > httpserv@1.0.0 start /APIGTW
+apigateway_1  | > cd src && node index.js
+apigateway_1  | 
+stateserv_1   | 
+stateserv_1   | > stateserv@1.0.0 start /STATESERV
+stateserv_1   | > cd src && node index.js
+stateserv_1   | 
+stateserv_1   | Server running on PORT: 9000
+httpserv_1    | Server running on PORT: 8082
+apigateway_1  | Server running on PORT: 8081
+obser_1       | 
+obser_1       | > obse@1.0.0 start /OBSE
+obser_1       | > cd src && node index.js
+obser_1       | 
+imed_1        | 
+imed_1        | > imed@1.0.0 start /usr/app
+imed_1        | > cd src && node index.js
+imed_1        | 
+orig_1        | 
+orig_1        | > orig@1.0.0 start /usr/app
+orig_1        | > cd src && node index.js
+orig_1        | 
+rabbitmq_1    | Configuring logger redirection
+rabbitmq_1    | 2020-12-08 17:57:21.287 [debug] <0.287.0> Lager installed handler error_logger_lager_h into error_logger
+rabbitmq_1    | 2020-12-08 17:57:21.294 [debug] <0.308.0> Lager installed handler lager_forwarder_backend into rabbit_log_ldap_lager_event
+rabbitmq_1    | 2020-12-08 17:57:21.294 [debug] <0.290.0> Lager installed handler lager_forwarder_backend into error_logger_lager_event
+rabbitmq_1    | 2020-12-08 17:57:21.294 [debug] <0.311.0> Lager installed handler lager_forwarder_backend into rabbit_log_mirroring_lager_event
+rabbitmq_1    | 2020-12-08 17:57:21.294 [debug] <0.293.0> Lager installed handler lager_forwarder_backend into rabbit_log_lager_event
+rabbitmq_1    | 2020-12-08 17:57:21.294 [debug] <0.314.0> Lager installed handler lager_forwarder_backend into rabbit_log_prelaunch_lager_event
+rabbitmq_1    | 2020-12-08 17:57:21.294 [debug] <0.317.0> Lager installed handler lager_forwarder_backend into rabbit_log_queue_lager_event
+rabbitmq_1    | 2020-12-08 17:57:21.295 [debug] <0.296.0> Lager installed handler lager_forwarder_backend into rabbit_log_channel_lager_event
+rabbitmq_1    | 2020-12-08 17:57:21.295 [debug] <0.320.0> Lager installed handler lager_forwarder_backend into rabbit_log_ra_lager_event
+rabbitmq_1    | 2020-12-08 17:57:21.295 [debug] <0.299.0> Lager installed handler lager_forwarder_backend into rabbit_log_connection_lager_event
+rabbitmq_1    | 2020-12-08 17:57:21.295 [debug] <0.302.0> Lager installed handler lager_forwarder_backend into rabbit_log_feature_flags_lager_event
+rabbitmq_1    | 2020-12-08 17:57:21.295 [debug] <0.305.0> Lager installed handler lager_forwarder_backend into rabbit_log_federation_lager_event
+rabbitmq_1    | 2020-12-08 17:57:21.295 [debug] <0.323.0> Lager installed handler lager_forwarder_backend into rabbit_log_shovel_lager_event
+rabbitmq_1    | 2020-12-08 17:57:21.295 [debug] <0.326.0> Lager installed handler lager_forwarder_backend into rabbit_log_upgrade_lager_event
+rabbitmq_1    | 2020-12-08 17:57:21.315 [info] <0.44.0> Application lager started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:21.787 [debug] <0.283.0> Lager installed handler lager_backend_throttle into lager_event
+obser_1       | file:///OBSE/src/index.js:21
+obser_1       |     if (err) throw err;
+obser_1       |              ^
+obser_1       | 
+obser_1       | Error: connect ECONNREFUSED 172.23.0.2:5672
+obser_1       |     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16) {
+obser_1       |   errno: -111,
+obser_1       |   code: 'ECONNREFUSED',
+obser_1       |   syscall: 'connect',
+obser_1       |   address: '172.23.0.2',
+obser_1       |   port: 5672
+obser_1       | }
+imed_1        | file:///usr/app/src/index.js:17
+imed_1        |     if (err) throw err;
+imed_1        |              ^
+imed_1        | 
+imed_1        | Error: connect ECONNREFUSED 172.23.0.2:5672
+imed_1        |     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16) {
+imed_1        |   errno: -111,
+imed_1        |   code: 'ECONNREFUSED',
+imed_1        |   syscall: 'connect',
+imed_1        |   address: '172.23.0.2',
+imed_1        |   port: 5672
+imed_1        | }
+obser_1       | npm ERR! code ELIFECYCLE
+imed_1        | npm ERR! code ELIFECYCLE
+imed_1        | npm ERR! errno 1
+obser_1       | npm ERR! errno 1
+imed_1        | npm ERR! imed@1.0.0 start: `cd src && node index.js`
+imed_1        | npm ERR! Exit status 1
+imed_1        | npm ERR! 
+imed_1        | npm ERR! Failed at the imed@1.0.0 start script.
+imed_1        | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+obser_1       | npm ERR! obse@1.0.0 start: `cd src && node index.js`
+obser_1       | npm ERR! Exit status 1
+obser_1       | npm ERR! 
+obser_1       | npm ERR! Failed at the obse@1.0.0 start script.
+obser_1       | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+imed_1        | 
+imed_1        | npm ERR! A complete log of this run can be found in:
+imed_1        | npm ERR!     /root/.npm/_logs/2020-12-08T17_57_22_419Z-debug.log
+obser_1       | 
+obser_1       | npm ERR! A complete log of this run can be found in:
+obser_1       | npm ERR!     /root/.npm/_logs/2020-12-08T17_57_22_422Z-debug.log
+rabbitmq_1    | 2020-12-08 17:57:23.970 [info] <0.44.0> Application mnesia started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:23.976 [info] <0.272.0> 
+rabbitmq_1    |  Starting RabbitMQ 3.8.9 on Erlang 23.1.4
+rabbitmq_1    |  Copyright (c) 2007-2020 VMware, Inc. or its affiliates.
+rabbitmq_1    |  Licensed under the MPL 2.0. Website: https://rabbitmq.com
+rabbitmq_1    | 
+rabbitmq_1    |   ##  ##      RabbitMQ 3.8.9
+rabbitmq_1    |   ##  ##
+rabbitmq_1    |   ##########  Copyright (c) 2007-2020 VMware, Inc. or its affiliates.
+rabbitmq_1    |   ######  ##
+rabbitmq_1    |   ##########  Licensed under the MPL 2.0. Website: https://rabbitmq.com
+rabbitmq_1    | 
+rabbitmq_1    |   Doc guides: https://rabbitmq.com/documentation.html
+rabbitmq_1    |   Support:    https://rabbitmq.com/contact.html
+rabbitmq_1    |   Tutorials:  https://rabbitmq.com/getstarted.html
+rabbitmq_1    |   Monitoring: https://rabbitmq.com/monitoring.html
+rabbitmq_1    | 
+rabbitmq_1    |   Logs: <stdout>
+rabbitmq_1    | 
+rabbitmq_1    |   Config file(s): /etc/rabbitmq/rabbitmq.conf
+rabbitmq_1    |                   /etc/rabbitmq/conf.d/management_agent.disable_metrics_collector.conf
+rabbitmq_1    | 
+rabbitmq_1    |   Starting broker...2020-12-08 17:57:23.997 [info] <0.272.0> 
+rabbitmq_1    |  node           : rabbit@my-rabbit
+rabbitmq_1    |  home dir       : /var/lib/rabbitmq
+rabbitmq_1    |  config file(s) : /etc/rabbitmq/rabbitmq.conf
+rabbitmq_1    |                 : /etc/rabbitmq/conf.d/management_agent.disable_metrics_collector.conf
+rabbitmq_1    |  cookie hash    : Ela4HbfBpO8ytEyLFCa5Rg==
+rabbitmq_1    |  log(s)         : <stdout>
+rabbitmq_1    |  database dir   : /var/lib/rabbitmq/mnesia/rabbit@my-rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.035 [info] <0.272.0> Running boot step pre_boot defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.035 [info] <0.272.0> Running boot step rabbit_core_metrics defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.036 [info] <0.272.0> Running boot step rabbit_alarm defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.073 [info] <0.415.0> Memory high watermark set to 796 MiB (834840166 bytes) of 1990 MiB (2087100416 bytes) total
+rabbitmq_1    | 2020-12-08 17:57:24.095 [info] <0.417.0> Enabling free disk space monitoring
+rabbitmq_1    | 2020-12-08 17:57:24.095 [info] <0.417.0> Disk free limit set to 50MB
+rabbitmq_1    | 2020-12-08 17:57:24.102 [info] <0.272.0> Running boot step code_server_cache defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.103 [info] <0.272.0> Running boot step file_handle_cache defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.103 [info] <0.420.0> Limiting to approx 1048479 file handles (943629 sockets)
+rabbitmq_1    | 2020-12-08 17:57:24.103 [info] <0.421.0> FHC read buffering:  OFF
+rabbitmq_1    | 2020-12-08 17:57:24.103 [info] <0.421.0> FHC write buffering: ON
+rabbitmq_1    | 2020-12-08 17:57:24.114 [info] <0.272.0> Running boot step worker_pool defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.114 [info] <0.374.0> Will use 8 processes for default worker pool
+rabbitmq_1    | 2020-12-08 17:57:24.114 [info] <0.374.0> Starting worker pool 'worker_pool' with 8 processes in it
+rabbitmq_1    | 2020-12-08 17:57:24.117 [info] <0.272.0> Running boot step database defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.124 [info] <0.272.0> Waiting for Mnesia tables for 30000 ms, 9 retries left
+rabbitmq_1    | 2020-12-08 17:57:24.125 [info] <0.272.0> Successfully synced tables from a peer
+rabbitmq_1    | 2020-12-08 17:57:24.125 [info] <0.272.0> Waiting for Mnesia tables for 30000 ms, 9 retries left
+rabbitmq_1    | 2020-12-08 17:57:24.125 [info] <0.272.0> Successfully synced tables from a peer
+rabbitmq_1    | 2020-12-08 17:57:24.162 [info] <0.272.0> Waiting for Mnesia tables for 30000 ms, 9 retries left
+rabbitmq_1    | 2020-12-08 17:57:24.163 [info] <0.272.0> Successfully synced tables from a peer
+rabbitmq_1    | 2020-12-08 17:57:24.163 [info] <0.272.0> Peer discovery backend rabbit_peer_discovery_classic_config does not support registration, skipping registration.
+rabbitmq_1    | 2020-12-08 17:57:24.163 [info] <0.272.0> Running boot step database_sync defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.163 [info] <0.272.0> Running boot step feature_flags defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.164 [info] <0.272.0> Running boot step codec_correctness_check defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.164 [info] <0.272.0> Running boot step external_infrastructure defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.164 [info] <0.272.0> Running boot step rabbit_registry defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.164 [info] <0.272.0> Running boot step rabbit_auth_mechanism_cr_demo defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.165 [info] <0.272.0> Running boot step rabbit_queue_location_random defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.165 [info] <0.272.0> Running boot step rabbit_event defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.165 [info] <0.272.0> Running boot step rabbit_auth_mechanism_amqplain defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.165 [info] <0.272.0> Running boot step rabbit_auth_mechanism_plain defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.165 [info] <0.272.0> Running boot step rabbit_exchange_type_direct defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.166 [info] <0.272.0> Running boot step rabbit_exchange_type_fanout defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.166 [info] <0.272.0> Running boot step rabbit_exchange_type_headers defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.166 [info] <0.272.0> Running boot step rabbit_exchange_type_topic defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.166 [info] <0.272.0> Running boot step rabbit_mirror_queue_mode_all defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.167 [info] <0.272.0> Running boot step rabbit_mirror_queue_mode_exactly defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.167 [info] <0.272.0> Running boot step rabbit_mirror_queue_mode_nodes defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.167 [info] <0.272.0> Running boot step rabbit_priority_queue defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.167 [info] <0.272.0> Priority queues enabled, real BQ is rabbit_variable_queue
+rabbitmq_1    | 2020-12-08 17:57:24.167 [info] <0.272.0> Running boot step rabbit_queue_location_client_local defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.167 [info] <0.272.0> Running boot step rabbit_queue_location_min_masters defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.168 [info] <0.272.0> Running boot step kernel_ready defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.168 [info] <0.272.0> Running boot step rabbit_sysmon_minder defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.168 [info] <0.272.0> Running boot step rabbit_epmd_monitor defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.176 [info] <0.447.0> epmd monitor knows us, inter-node communication (distribution) port: 25672
+rabbitmq_1    | 2020-12-08 17:57:24.177 [info] <0.272.0> Running boot step guid_generator defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.182 [info] <0.272.0> Running boot step rabbit_node_monitor defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.182 [info] <0.451.0> Starting rabbit_node_monitor
+rabbitmq_1    | 2020-12-08 17:57:24.183 [info] <0.272.0> Running boot step delegate_sup defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.187 [info] <0.272.0> Running boot step rabbit_memory_monitor defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.188 [info] <0.272.0> Running boot step core_initialized defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.188 [info] <0.272.0> Running boot step upgrade_queues defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.217 [info] <0.272.0> Running boot step rabbit_connection_tracking defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.217 [info] <0.272.0> Running boot step rabbit_connection_tracking_handler defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.217 [info] <0.272.0> Running boot step rabbit_exchange_parameters defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.218 [info] <0.272.0> Running boot step rabbit_mirror_queue_misc defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.218 [info] <0.272.0> Running boot step rabbit_policies defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.221 [info] <0.272.0> Running boot step rabbit_policy defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.221 [info] <0.272.0> Running boot step rabbit_queue_location_validator defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.221 [info] <0.272.0> Running boot step rabbit_quorum_memory_manager defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.221 [info] <0.272.0> Running boot step rabbit_vhost_limit defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.221 [info] <0.272.0> Running boot step recovery defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.224 [info] <0.480.0> Making sure data directory '/var/lib/rabbitmq/mnesia/rabbit@my-rabbit/msg_stores/vhosts/628WB79CIFDYO9LJI6DKMI09L' for vhost '/' exists
+rabbitmq_1    | 2020-12-08 17:57:24.233 [info] <0.480.0> Starting message stores for vhost '/'
+rabbitmq_1    | 2020-12-08 17:57:24.234 [info] <0.484.0> Message store "628WB79CIFDYO9LJI6DKMI09L/msg_store_transient": using rabbit_msg_store_ets_index to provide index
+rabbitmq_1    | 2020-12-08 17:57:24.245 [info] <0.480.0> Started message store of type transient for vhost '/'
+rabbitmq_1    | 2020-12-08 17:57:24.246 [info] <0.488.0> Message store "628WB79CIFDYO9LJI6DKMI09L/msg_store_persistent": using rabbit_msg_store_ets_index to provide index
+rabbitmq_1    | 2020-12-08 17:57:24.252 [info] <0.480.0> Started message store of type persistent for vhost '/'
+rabbitmq_1    | 2020-12-08 17:57:24.258 [info] <0.272.0> Running boot step empty_db_check defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.258 [info] <0.272.0> Will not seed default virtual host and user: have definitions to load...
+rabbitmq_1    | 2020-12-08 17:57:24.258 [info] <0.272.0> Running boot step rabbit_looking_glass defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.258 [info] <0.272.0> Running boot step rabbit_core_metrics_gc defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.259 [info] <0.272.0> Running boot step background_gc defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.260 [info] <0.272.0> Running boot step connection_tracking defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.260 [info] <0.272.0> Setting up a table for connection tracking on this node: 'tracked_connection_on_node_rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:24.261 [info] <0.272.0> Setting up a table for per-vhost connection counting on this node: 'tracked_connection_per_vhost_on_node_rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:24.261 [info] <0.272.0> Running boot step routing_ready defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.261 [info] <0.272.0> Running boot step pre_flight defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.261 [info] <0.272.0> Running boot step notify_cluster defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.261 [info] <0.272.0> Running boot step networking defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.262 [info] <0.272.0> Running boot step definition_import_worker_pool defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.262 [info] <0.374.0> Starting worker pool 'definition_import_pool' with 8 processes in it
+rabbitmq_1    | 2020-12-08 17:57:24.264 [info] <0.272.0> Running boot step cluster_name defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.264 [info] <0.272.0> Running boot step direct_client defined by app rabbit
+rabbitmq_1    | 2020-12-08 17:57:24.265 [info] <0.44.0> Application rabbit started on node 'rabbit@my-rabbit'
+obser_1       | 
+obser_1       | > obse@1.0.0 start /OBSE
+obser_1       | > cd src && node index.js
+obser_1       | 
+imed_1        | 
+imed_1        | > imed@1.0.0 start /usr/app
+imed_1        | > cd src && node index.js
+imed_1        | 
+rabbitmq_1    | 2020-12-08 17:57:25.029 [info] <0.522.0> Feature flags: list of feature flags found:
+rabbitmq_1    | 2020-12-08 17:57:25.030 [info] <0.522.0> Feature flags:   [ ] drop_unroutable_metric
+rabbitmq_1    | 2020-12-08 17:57:25.030 [info] <0.522.0> Feature flags:   [ ] empty_basic_get_metric
+rabbitmq_1    | 2020-12-08 17:57:25.031 [info] <0.522.0> Feature flags:   [x] implicit_default_bindings
+rabbitmq_1    | 2020-12-08 17:57:25.031 [info] <0.522.0> Feature flags:   [x] maintenance_mode_status
+rabbitmq_1    | 2020-12-08 17:57:25.031 [info] <0.522.0> Feature flags:   [x] quorum_queue
+rabbitmq_1    | 2020-12-08 17:57:25.031 [info] <0.522.0> Feature flags:   [x] virtual_host_metadata
+rabbitmq_1    | 2020-12-08 17:57:25.031 [info] <0.522.0> Feature flags: feature flag states written to disk: yes
+rabbitmq_1    | 2020-12-08 17:57:25.356 [info] <0.44.0> Application cowlib started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:25.375 [info] <0.44.0> Application cowboy started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:25.388 [info] <0.522.0> Running boot step rabbit_mgmt_db_handler defined by app rabbitmq_management_agent
+rabbitmq_1    | 2020-12-08 17:57:25.388 [info] <0.522.0> Management plugin: using rates mode 'basic'
+rabbitmq_1    | 2020-12-08 17:57:25.400 [info] <0.44.0> Application rabbitmq_management_agent started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:25.451 [info] <0.44.0> Application prometheus started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:25.474 [info] <0.44.0> Application rabbitmq_web_dispatch started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:25.503 [info] <0.554.0> Prometheus metrics: HTTP (non-TLS) listener started on port 15692
+rabbitmq_1    | 2020-12-08 17:57:25.503 [info] <0.522.0> Ready to start client connection listeners
+rabbitmq_1    | 2020-12-08 17:57:25.503 [info] <0.44.0> Application rabbitmq_prometheus started on node 'rabbit@my-rabbit'
+rabbitmq_1    | 2020-12-08 17:57:25.510 [info] <0.673.0> started TCP listener on [::]:5672
+rabbitmq_1    |  completed with 3 plugins.
+rabbitmq_1    | 2020-12-08 17:57:26.209 [info] <0.522.0> Server startup complete; 3 plugins started.
+rabbitmq_1    |  * rabbitmq_prometheus
+rabbitmq_1    |  * rabbitmq_web_dispatch
+rabbitmq_1    |  * rabbitmq_management_agent
+rabbitmq_1    | 2020-12-08 17:57:26.210 [info] <0.522.0> Resetting node maintenance status
+rabbitmq_1    | 2020-12-08 17:57:28.482 [info] <0.676.0> accepting AMQP connection <0.676.0> (172.23.0.7:55506 -> 172.23.0.2:5672)
+rabbitmq_1    | 2020-12-08 17:57:28.624 [info] <0.676.0> connection <0.676.0> (172.23.0.7:55506 -> 172.23.0.2:5672): user 'guest' authenticated and granted access to vhost '/'
+rabbitmq_1    | 2020-12-08 17:57:29.399 [info] <0.691.0> accepting AMQP connection <0.691.0> (172.23.0.6:34374 -> 172.23.0.2:5672)
+rabbitmq_1    | 2020-12-08 17:57:29.399 [info] <0.688.0> accepting AMQP connection <0.688.0> (172.23.0.8:56782 -> 172.23.0.2:5672)
+rabbitmq_1    | 2020-12-08 17:57:29.487 [info] <0.688.0> connection <0.688.0> (172.23.0.8:56782 -> 172.23.0.2:5672): user 'guest' authenticated and granted access to vhost '/'
+rabbitmq_1    | 2020-12-08 17:57:29.487 [info] <0.691.0> connection <0.691.0> (172.23.0.6:34374 -> 172.23.0.2:5672): user 'guest' authenticated and granted access to vhost '/'
+obser_1       | New message received. Writing content to file data.txt
+obser_1       | New message received. Writing content to file data.txt
+obser_1       | New message received. Writing content to file data.txt
+obser_1       | New message received. Writing content to file data.txt
+obser_1       | New message received. Writing content to file data.txt
