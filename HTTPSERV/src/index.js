@@ -1,3 +1,7 @@
+/* 
+This service is responsible for serving message logs.
+*/
+
 import http from 'http';
 import fs from 'fs';
 const PORT = 8082;
