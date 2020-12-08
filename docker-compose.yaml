@@ -9,12 +9,14 @@ services:
       context: ./ORIG
       dockerfile: Dockerfile
     restart: always
+    depends_on: ['rabbitmq']
     command: npm start
   imed:
     build:
       context: ./IMED
       dockerfile: Dockerfile
     restart: always
+    depends_on: ['rabbitmq']
     command: npm start
   obser:
     build:
@@ -23,6 +25,7 @@ services:
     volumes:
       - data:/data
     restart: always
+    depends_on: ['rabbitmq']
     command: npm start
   httpserv:
     build:
