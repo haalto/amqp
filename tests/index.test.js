@@ -33,7 +33,7 @@ describe('Test API Gateway', () => {
   it('Returned state should be INIT', async () => {
     const response = await fetch(`http://apigateway:8081/state`);
     const data = await response.text();
-    expect(data).toBe('RUNNING');
+    expect(data).toBe('INIT');
   });
 
   it('Change state from INIT to PAUSED', async () => {
