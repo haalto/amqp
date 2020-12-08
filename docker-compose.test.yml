@@ -1,4 +1,4 @@
-version: '3.6'
+version: "3.6"
 
 services:
   rabbitmq:
@@ -10,14 +10,14 @@ services:
       dockerfile: Dockerfile
     restart: always
     command: npm start
-    depends_on: ['rabbitmq']
+    depends_on: ["rabbitmq"]
   imed:
     build:
       context: ./IMED
       dockerfile: Dockerfile
     restart: always
     command: npm start
-    depends_on: ['rabbitmq']
+    depends_on: ["rabbitmq"]
   obser:
     build:
       context: ./OBSE
@@ -26,7 +26,7 @@ services:
       - data:/data
     restart: always
     command: npm start
-    depends_on: ['rabbitmq']
+    depends_on: ["rabbitmq"]
   httpserv:
     build:
       context: ./HTTPSERV
@@ -41,16 +41,12 @@ services:
     build:
       context: ./APIGTW
       dockerfile: Dockerfile
-    ports:
-      - 8081:8081
     restart: always
     command: npm start
   stateserv:
     build:
       context: ./STATESERV
       dockerfile: Dockerfile
-    ports:
-      - 9000:9000
     restart: always
     command: npm start
   tests:
